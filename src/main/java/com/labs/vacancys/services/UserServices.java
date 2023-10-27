@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class UserServices {
@@ -41,5 +43,10 @@ public class UserServices {
         User user = findByIDUser(id);
         user.setPassword(password);
         return user;
+    }
+
+    @Transactional()
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -16,6 +18,12 @@ public class UserController {
 
     @Autowired
     private UserServices userServices;
+
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers(){
+        List<User> list = userServices.getAllUsers();
+        return ResponseEntity.ok().body(list);
+    }
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
